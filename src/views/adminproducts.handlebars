@@ -1,0 +1,35 @@
+
+    <h1> Hello, Welcome {{ user.name}} </h1>
+    <p>{{ user.rol}}</p>
+
+    <h2>Products list</h2>  <button>Add Producto</button>
+    
+    <div style="border: 1px solid rgb(153, 119, 119)" class="product-list">
+        <div style= "display: flex"  class="product-card">
+        {{#each product}}
+        <div style="border: 1px solid rgb(119, 119, 119)"> 
+
+            <h2>{{this.title}}</h2>
+            <p>{{this.description}}</p>
+            <button>Delete Product</button>
+            <button>Edit Product</button>
+        </div>
+
+        {{/each}}
+
+        </div>
+    </div>
+    
+    <div style="border: 1px solid rgb(153, 119, 119)" class="pagination">
+        </br>
+        <a href="/api/sessions/logout"><button> Logout </button></a>
+        </br>
+        </br>
+
+        {{#if hasPrevPage}}
+            <a href="?page={{prevPage}}">Previous</a>
+        {{/if}}
+        {{#if hasNextPage}}
+            <a href="?page={{nextPage}}">Next</a>
+        {{/if}}
+    </div>
