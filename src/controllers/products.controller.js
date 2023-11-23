@@ -6,7 +6,6 @@ const getProducts = async (req, res) =>{
     try{
 
         const products = await getProductsService(limit, page, sort, query);
-        console.log(products)
         res.send({status: 'sucess', payload: products});
     }catch(error){
         res.status(500).send({status: 'error', error: error.message})
@@ -68,9 +67,26 @@ const updateProduct = async (req, res) =>{
     }
 };
 
+const deleteProduct = async (req, res) =>{
+    const {id} = req.params
+    try{
+        const products = await getProductIdService(id);
+        if(products){
+            await deleteProductService(id);
+            res.send({status: 'sucess', message:'Removed product'});
+        }else{
+            res.status(404).json({ error: 'Product not found'});
+        }
+    }catch(error){
+        res.status(500).send({status: 'error', error: error.message})
+    }
+
+};
+
 export {
     addProduct,
     getProductId,
     getProducts,
-    updateProduct
+    updateProduct,
+    deleteProduct
 };

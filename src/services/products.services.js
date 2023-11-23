@@ -30,11 +30,17 @@ const updateProductService = async(id, title, description, price, stock ) =>{
         stock
     });
     return result;
+};
+
+const deleteProductService = async(id) => {
+   const result = await productsRepository.deleleteProduct(id);
+   return result;
 }
 
 export {
     getProductsService,
     getProductIdService,
     addProductService,
-    updateProductService
+    updateProductService,
+    deleteProductService
 }
